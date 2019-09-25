@@ -1,6 +1,6 @@
 <?php
 
-namespace ssoFramework\Src\Assets;
+namespace ssoFramework\Src\assets;
 
 class Helper {
 	static function base_path() {
@@ -100,7 +100,7 @@ class Helper {
 			__( $name, 'sso-grathwol' ),
 			'manage_options',
 			$name_replace,
-			[ '\ssoFramework\Src\Assets\Helper', $name_replace . '_callback' ]
+			[ '\ssoFramework\Src\assets\Helper', $name_replace . '_callback' ]
 		);
 	}
 

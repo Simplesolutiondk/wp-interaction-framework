@@ -1,6 +1,6 @@
 <?php
 
-namespace ssoFramework\Src\Assets;
+namespace ssoFramework\Src\assets;
 
 use WC_Frontend_Scripts;
 

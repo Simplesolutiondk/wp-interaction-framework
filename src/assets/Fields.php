@@ -1,8 +1,8 @@
 <?php
 
-namespace ssoFramework\Src\Assets;
+namespace ssoFramework\Src\assets;
 
-use ssoFramework\Src\Assets\Helper;
+use ssoFramework\Src\assets\Helper;
 
 class Fields {
 

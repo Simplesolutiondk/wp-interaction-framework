@@ -1,6 +1,6 @@
 <?php
 
-namespace ssoFramework\Src\Assets;
+namespace ssoFramework\Src\assets;
 
 class Widgets {
 

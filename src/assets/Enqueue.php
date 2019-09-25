@@ -1,8 +1,8 @@
 <?php
 
-namespace ssoFramework\Src\Assets;
+namespace ssoFramework\Src\assets;
 
-use ssoFramework\Src\Assets\Helper;
+use ssoFramework\Src\assets\Helper;
 
 class Enqueue {
 
@@ -37,7 +37,7 @@ class Enqueue {
 	}
 
 	static function loadActions() {
-		add_action( 'admin_enqueue_scripts', [ '\ssoFramework\Src\Assets\Enqueue', 'adminActions' ] );
+		add_action( 'admin_enqueue_scripts', [ '\ssoFramework\Src\assets\Enqueue', 'adminActions' ] );
 	}
 
 }

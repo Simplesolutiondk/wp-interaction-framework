@@ -1,10 +1,10 @@
 <?php
 
-namespace ssoFramework\Src\Assets;
+namespace ssoFramework\Src\assets;
 
-use ssoFramework\Src\Assets\Fields;
-use ssoFramework\Src\Assets\Helper;
-use ssoFramework\Src\Assets\Tabs;
+use ssoFramework\Src\assets\Fields;
+use ssoFramework\Src\assets\Helper;
+use ssoFramework\Src\assets\Tabs;
 
 class Actions {
 	static function addMenuSubpage() {
@@ -251,15 +251,15 @@ class Actions {
 	}
 
 	static function loadFilters() {
-		add_filter( 'pllwc_copy_post_metas', [ '\ssoFramework\Src\Assets\Actions', 'pllRemoveMetadataSync' ], 10, 5 );
+		add_filter( 'pllwc_copy_post_metas', [ '\ssoFramework\Src\assets\Actions', 'pllRemoveMetadataSync' ], 10, 5 );
 		add_filter( 'post_class', [
-			'\ssoFramework\Src\Assets\Actions',
+			'\ssoFramework\Src\assets\Actions',
 			'addThemeClass'
 		], 10, 3 );
 		add_filter( 'pre_option_rg_gforms_disable_css', '__return_true' );
-        add_filter( 'woocommerce_variable_sale_price_html', [ '\ssoFramework\Src\Assets\Actions', 'remove_prices_if_related_and_upsell'  ], 10, 2 );
-        add_filter( 'woocommerce_variable_price_html', [ '\ssoFramework\Src\Assets\Actions', 'remove_prices_if_related_and_upsell' ], 10, 2 );
-        add_filter( 'woocommerce_get_price_html', [ '\ssoFramework\Src\Assets\Actions', 'remove_prices_if_related_and_upsell' ], 10, 2 );
+        add_filter( 'woocommerce_variable_sale_price_html', [ '\ssoFramework\Src\assets\Actions', 'remove_prices_if_related_and_upsell'  ], 10, 2 );
+        add_filter( 'woocommerce_variable_price_html', [ '\ssoFramework\Src\assets\Actions', 'remove_prices_if_related_and_upsell' ], 10, 2 );
+        add_filter( 'woocommerce_get_price_html', [ '\ssoFramework\Src\assets\Actions', 'remove_prices_if_related_and_upsell' ], 10, 2 );
 
 
 	}
@@ -486,18 +486,7 @@ class Actions {
 		<?php };
 	}
 
-	/**
-	 * Change WC My Account Entry Title.
-	 */
-	static function change_wc_account_entry_title($title, $id) {
-		if ( is_wc_endpoint_url( 'koebte-produkter' ) && in_the_loop() ) { // add your endpoint urls
-			$title = "Oftes Købte Produkter"; // change your entry-title
-		}
-		if ( is_wc_endpoint_url( 'favoritter' ) && in_the_loop() ) { // add your endpoint urls
-			$title = "Favoritter"; // change your entry-title
-		}
-		return $title;
-	}
+
 
 	/**
 	 * Adds content for favorit list.
@@ -822,46 +811,45 @@ class Actions {
         add_filter( 'excerpt_length', function(){
             return 40;
 		} );
-		add_action( 'after_body', [ '\ssoFramework\Src\Assets\Actions', 'maintanenceMode' ], 1 ); // Maintanence hook.
-		add_filter( 'block_categories', [ '\ssoFramework\Src\Assets\Actions', 'sso_custom_block_categories' ], 1, 2 );
-		add_filter( 'the_title', [ '\ssoFramework\Src\Assets\Actions', 'change_wc_account_entry_title' ], 10, 2);
-		add_filter( 'wp_nav_menu_items', [ '\ssoFramework\Src\Assets\Actions', 'add_login_myaccount_link' ], 10, 2 ); // Registers my-account menu item (Service menu)
-		add_filter( 'woocommerce_product_add_to_cart_text', [ '\ssoFramework\Src\Assets\Actions', 'check_logged_in_user_buttons' ], 10, 2);
-		add_filter( 'woocommerce_get_price_html', [ '\ssoFramework\Src\Assets\Actions', 'check_logged_in_user_price' ], 10, 4 );
-		add_action( 'woocommerce_account_menu_items', [ '\ssoFramework\Src\Assets\Actions', 'wc_create_link_my_account' ], 40 );
-		add_action( 'init', [ '\ssoFramework\Src\Assets\Actions', 'wc_my_account_add_endpoint' ], 2 );
-		add_action( 'woocommerce_account_koebte-produkter_endpoint', [ '\ssoFramework\Src\Assets\Actions', 'wc_my_account_endpoint_content' ] );
-		add_action( 'woocommerce_account_favoritter_endpoint', [ '\ssoFramework\Src\Assets\Actions', 'favorit_list_content' ] );
-		add_action( 'after_header_navigation_mount', [ '\ssoFramework\Src\Assets\Actions', 'ctaButtonHeader' ], 1 );
-        add_action( 'after_header_navigation_mount', [ '\ssoFramework\Src\Assets\Actions', 'searchMount' ], 2 );
-		add_action( 'header_navigation_mount', [ '\ssoFramework\Src\Assets\Actions', 'mainNavigationMount' ], 1 );
-		add_action( 'admin_menu', [ '\ssoFramework\Src\Assets\Actions', 'addMenuSubpage' ] );
-		add_action( 'cmb2_admin_init', [ '\ssoFramework\Src\Assets\Actions', 'propertyOptionsPage' ] );
-		// Outcommented add_action below, as it was generating error -->  Warning: Invalid argument supplied for foreach() in /Users/simplesol/Documents/www/grathwol/wp-content/themes/sso-grathwol/framework/Src/Assets/Actions.php on line 200
-		// add_action( 'init', [ '\ssoFramework\Src\Assets\Actions', 'registerTaxonomies' ] );
-		add_action( 'mount_after_content', [ '\ssoFramework\Src\Assets\Actions', 'favoriteListMount' ] );
-		add_action( 'before_service_menu', [ '\ssoFramework\Src\Assets\Actions', 'contactInformation' ], 1 );
-		add_action( 'rest_api_init', [ '\ssoFramework\Src\Api\Overrides', 'create_api_posts_meta_field' ] );
-		add_action( 'pll_language_edit_form_fields', [ '\ssoFramework\Src\Assets\Actions', 'pllAddForm' ] );
-		add_action( 'pll_language_add_form_fields', [ '\ssoFramework\Src\Assets\Actions', 'pllAddForm' ] );
-		add_action( 'admin_init', [ '\ssoFramework\Src\Assets\Actions', 'pllSaveForm' ], 999 );
-		add_action( 'enqueue_block_editor_assets', [ '\ssoFramework\Src\Assets\Actions', 'add_gutenberg_editor_style' ] );
-		add_action( 'after_header', [ '\ssoFramework\Src\Assets\Actions', 'addBreadcrumbs' ], 1 );
-		add_action( 'cmb2_admin_init', [ '\ssoFramework\Src\Assets\Actions', 'pageFields' ] );
-		add_action( 'rest_api_init', [ '\ssoFramework\Src\Assets\Actions', 'saveFavorite' ] );
-		add_action( 'rest_api_init', [ '\ssoFramework\Src\Assets\Actions', 'getFavorites' ] );
-		add_action( 'rest_api_init', [ '\ssoFramework\Src\Assets\Actions', 'removeFavoritRestRoute' ] );
-		add_filter( 'woocommerce_account_menu_items', [ '\ssoFramework\Src\Assets\Actions', 'add_shipping_account_menu' ]);
-        add_action( 'init', [ '\ssoFramework\Src\Assets\Actions', 'add_shipping_account_menu_endpoint' ] );
-        add_action( 'woocommerce_account_shipping_endpoint', [ '\ssoFramework\Src\Assets\Actions', 'add_shipping_account_menu_content'] );
-		// add_filter( 'woocommerce_account_menu_items', [ '\ssoFramework\Src\Assets\Actions', 'adjust_account_menu_items' ]);
-        add_action( 'init', [ '\ssoFramework\Src\Assets\Actions', 'add_my_account_endpoint' ] );
-		add_action( 'woocommerce_account_contract_endpoint', [ '\ssoFramework\Src\Assets\Actions', 'add_contract_endpoint_content'] );
-		add_action( 'delete_user', [ '\ssoFramework\Src\Assets\Actions', 'removeFavoritList'] );
-		add_action( 'init', [ '\ssoFramework\Src\Assets\Actions', 'registerOrderSuccessPermalink' ] );
-        add_action( 'cart_thankyou_before', [ '\ssoFramework\Src\Assets\Actions', 'registerOrderSuccessRedirect' ] );
+		add_action( 'after_body', [ '\ssoFramework\Src\assets\Actions', 'maintanenceMode' ], 1 ); // Maintanence hook.
+		add_filter( 'block_categories', [ '\ssoFramework\Src\assets\Actions', 'sso_custom_block_categories' ], 1, 2 );
+		add_filter( 'wp_nav_menu_items', [ '\ssoFramework\Src\assets\Actions', 'add_login_myaccount_link' ], 10, 2 ); // Registers my-account menu item (Service menu)
+		add_filter( 'woocommerce_product_add_to_cart_text', [ '\ssoFramework\Src\assets\Actions', 'check_logged_in_user_buttons' ], 10, 2);
+		add_filter( 'woocommerce_get_price_html', [ '\ssoFramework\Src\assets\Actions', 'check_logged_in_user_price' ], 10, 4 );
+		add_action( 'woocommerce_account_menu_items', [ '\ssoFramework\Src\assets\Actions', 'wc_create_link_my_account' ], 40 );
+		add_action( 'init', [ '\ssoFramework\Src\assets\Actions', 'wc_my_account_add_endpoint' ], 2 );
+		add_action( 'woocommerce_account_koebte-produkter_endpoint', [ '\ssoFramework\Src\assets\Actions', 'wc_my_account_endpoint_content' ] );
+		add_action( 'woocommerce_account_favoritter_endpoint', [ '\ssoFramework\Src\assets\Actions', 'favorit_list_content' ] );
+		add_action( 'after_header_navigation_mount', [ '\ssoFramework\Src\assets\Actions', 'ctaButtonHeader' ], 1 );
+        add_action( 'after_header_navigation_mount', [ '\ssoFramework\Src\assets\Actions', 'searchMount' ], 2 );
+		add_action( 'header_navigation_mount', [ '\ssoFramework\Src\assets\Actions', 'mainNavigationMount' ], 1 );
+		add_action( 'admin_menu', [ '\ssoFramework\Src\assets\Actions', 'addMenuSubpage' ] );
+		add_action( 'cmb2_admin_init', [ '\ssoFramework\Src\assets\Actions', 'propertyOptionsPage' ] );
+		// Outcommented add_action below, as it was generating error -->  Warning: Invalid argument supplied for foreach() in /Users/simplesol/Documents/www/grathwol/wp-content/themes/sso-grathwol/framework/Src/assets/Actions.php on line 200
+		// add_action( 'init', [ '\ssoFramework\Src\assets\Actions', 'registerTaxonomies' ] );
+		add_action( 'mount_after_content', [ '\ssoFramework\Src\assets\Actions', 'favoriteListMount' ] );
+		add_action( 'before_service_menu', [ '\ssoFramework\Src\assets\Actions', 'contactInformation' ], 1 );
+		add_action( 'rest_api_init', [ '\ssoFramework\Src\api\Overrides', 'create_api_posts_meta_field' ] );
+		add_action( 'pll_language_edit_form_fields', [ '\ssoFramework\Src\assets\Actions', 'pllAddForm' ] );
+		add_action( 'pll_language_add_form_fields', [ '\ssoFramework\Src\assets\Actions', 'pllAddForm' ] );
+		add_action( 'admin_init', [ '\ssoFramework\Src\assets\Actions', 'pllSaveForm' ], 999 );
+		add_action( 'enqueue_block_editor_assets', [ '\ssoFramework\Src\assets\Actions', 'add_gutenberg_editor_style' ] );
+		add_action( 'after_header', [ '\ssoFramework\Src\assets\Actions', 'addBreadcrumbs' ], 1 );
+		add_action( 'cmb2_admin_init', [ '\ssoFramework\Src\assets\Actions', 'pageFields' ] );
+		add_action( 'rest_api_init', [ '\ssoFramework\Src\assets\Actions', 'saveFavorite' ] );
+		add_action( 'rest_api_init', [ '\ssoFramework\Src\assets\Actions', 'getFavorites' ] );
+		add_action( 'rest_api_init', [ '\ssoFramework\Src\assets\Actions', 'removeFavoritRestRoute' ] );
+		add_filter( 'woocommerce_account_menu_items', [ '\ssoFramework\Src\assets\Actions', 'add_shipping_account_menu' ]);
+        add_action( 'init', [ '\ssoFramework\Src\assets\Actions', 'add_shipping_account_menu_endpoint' ] );
+        add_action( 'woocommerce_account_shipping_endpoint', [ '\ssoFramework\Src\assets\Actions', 'add_shipping_account_menu_content'] );
+		// add_filter( 'woocommerce_account_menu_items', [ '\ssoFramework\Src\assets\Actions', 'adjust_account_menu_items' ]);
+        add_action( 'init', [ '\ssoFramework\Src\assets\Actions', 'add_my_account_endpoint' ] );
+		add_action( 'woocommerce_account_contract_endpoint', [ '\ssoFramework\Src\assets\Actions', 'add_contract_endpoint_content'] );
+		add_action( 'delete_user', [ '\ssoFramework\Src\assets\Actions', 'removeFavoritList'] );
+		add_action( 'init', [ '\ssoFramework\Src\assets\Actions', 'registerOrderSuccessPermalink' ] );
+        add_action( 'cart_thankyou_before', [ '\ssoFramework\Src\assets\Actions', 'registerOrderSuccessRedirect' ] );
 
-        add_action( 'customize_register', [ '\ssoFramework\Src\Assets\Actions', 'customizer_init' ] );
+        add_action( 'customize_register', [ '\ssoFramework\Src\assets\Actions', 'customizer_init' ] );
 
     }
 }

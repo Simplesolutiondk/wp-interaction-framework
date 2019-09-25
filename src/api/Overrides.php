@@ -1,6 +1,6 @@
 <?php
 
-namespace ssoFramework\Src\Api;
+namespace ssoFramework\Src\api;
 
 class Overrides {
 	static function create_api_posts_meta_field() {

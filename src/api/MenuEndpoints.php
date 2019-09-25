@@ -1,6 +1,6 @@
 <?php
 
-namespace ssoFramework\Src\Api;
+namespace ssoFramework\Src\api;
 
 
 class MenuEndpoints {
@@ -24,7 +24,7 @@ class MenuEndpoints {
 		add_action( 'rest_api_init', function () {
 			register_rest_route( 'wp/v2', '/menu/(?P<location>[a-zA-Z0-9_-]+)', array(
 				'methods'  => 'GET',
-				'callback' => [ '\ssoFramework\Src\Api\MenuEndpoints', 'getMenuItems' ],
+				'callback' => [ '\ssoFramework\Src\api\MenuEndpoints', 'getMenuItems' ],
 			) );
 		} );
 

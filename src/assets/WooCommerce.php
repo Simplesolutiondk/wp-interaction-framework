@@ -1,6 +1,6 @@
 <?php
 
-namespace ssoFramework\Src\Assets;
+namespace ssoFramework\Src\assets;
 
 class WooCommerce {
 
@@ -478,7 +478,7 @@ class WooCommerce {
 
 	static function addColorFieldsToTaxonomies() {
 		foreach ( WooCommerce::get_current_post_taxonomies() as $taxonomy ) {
-			add_action( $taxonomy . '_add_form_fields', [ '\ssoFramework\Src\Assets\WooCommerce', 'colorField' ] );
+			add_action( $taxonomy . '_add_form_fields', [ '\ssoFramework\Src\assets\WooCommerce', 'colorField' ] );
 		}
 	}
 
@@ -642,7 +642,7 @@ class WooCommerce {
             'type'             => 'select',
             'show_option_none' => true,
             'default'          => 'custom',
-            'options_cb'       => ['\ssoFramework\Src\Assets\WooCommerce', 'get_users']
+            'options_cb'       => ['\ssoFramework\Src\assets\WooCommerce', 'get_users']
         ]);
 
 
@@ -910,7 +910,7 @@ class WooCommerce {
             'name' => __('Free shipping', 'sso-grathwol'),
             'id'   => Helper::prefix() . 'user_specific_free_shipping',
             'type' => 'multicheck',
-            'options_cb' => ['\ssoFramework\Src\Assets\WooCommerce', 'get_users']
+            'options_cb' => ['\ssoFramework\Src\assets\WooCommerce', 'get_users']
         ]);
     }
 
@@ -948,80 +948,80 @@ class WooCommerce {
     }
 
 	static function loadFilters() {
-	    add_filter( 'woocommerce_output_related_products_args', [ '\ssoFramework\Src\Assets\WooCommerce', 'relatedProductsColumns' ] , 20 );
-	    add_filter( 'woocommerce_upsell_display_args', [ '\ssoFramework\Src\Assets\WooCommerce', 'upsellsProductsColumns' ], 20 );
-		add_filter( 'woocommerce_product_tabs', [ '\ssoFramework\Src\Assets\WooCommerce', 'unsetProductTabs' ] );
-		add_filter( 'woocommerce_admin_billing_fields', [ '\ssoFramework\Src\Assets\WooCommerce', 'addCustomBillingFields' ] );
+	    add_filter( 'woocommerce_output_related_products_args', [ '\ssoFramework\Src\assets\WooCommerce', 'relatedProductsColumns' ] , 20 );
+	    add_filter( 'woocommerce_upsell_display_args', [ '\ssoFramework\Src\assets\WooCommerce', 'upsellsProductsColumns' ], 20 );
+		add_filter( 'woocommerce_product_tabs', [ '\ssoFramework\Src\assets\WooCommerce', 'unsetProductTabs' ] );
+		add_filter( 'woocommerce_admin_billing_fields', [ '\ssoFramework\Src\assets\WooCommerce', 'addCustomBillingFields' ] );
 		add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
-		add_filter( 'woocommerce_currency', [ '\ssoFramework\Src\Assets\WooCommerce', 'pllWoocommerceCurrency' ], 999 );
+		add_filter( 'woocommerce_currency', [ '\ssoFramework\Src\assets\WooCommerce', 'pllWoocommerceCurrency' ], 999 );
 		add_filter( 'woocommerce_product_additional_information_heading', '__return_null' );
 		add_filter( 'woocommerce_breadcrumb_defaults', [
-			'\ssoFramework\Src\Assets\WooCommerce',
+			'\ssoFramework\Src\assets\WooCommerce',
 			'wcc_change_breadcrumb_delimiter'
 		], 999 );
-		add_filter( 'woocommerce_get_price_html', [ '\ssoFramework\Src\Assets\WooCommerce', 'overridePriceHtml' ], 10, 2 );
+		add_filter( 'woocommerce_get_price_html', [ '\ssoFramework\Src\assets\WooCommerce', 'overridePriceHtml' ], 10, 2 );
 		add_filter( 'woocommerce_shipping_settings', [
-			'\ssoFramework\Src\Assets\WooCommerce',
+			'\ssoFramework\Src\assets\WooCommerce',
 			'AddShippingTollSetting'
 		], 10, 1 );
-		add_filter( 'woocommerce_account_menu_items', [ '\ssoFramework\Src\Assets\WooCommerce', 'woocommerce_account_menu_items' ], 10 );
-		add_filter('user_contactmethods', [ '\ssoFramework\Src\Assets\WooCommerce', 'modify_contact_field' ], 10, 1);
+		add_filter( 'woocommerce_account_menu_items', [ '\ssoFramework\Src\assets\WooCommerce', 'woocommerce_account_menu_items' ], 10 );
+		add_filter('user_contactmethods', [ '\ssoFramework\Src\assets\WooCommerce', 'modify_contact_field' ], 10, 1);
 	}
 
 
 	static function loadActions() {
-		add_action( 'created_pa_farve',  [ '\ssoFramework\Src\Assets\WooCommerce', 'save_form_fields' ], 10, 2 );
-		add_action( 'admin_head', [ '\ssoFramework\Src\Assets\WooCommerce', 'addColorFieldsToTaxonomies' ] );
+		add_action( 'created_pa_farve',  [ '\ssoFramework\Src\assets\WooCommerce', 'save_form_fields' ], 10, 2 );
+		add_action( 'admin_head', [ '\ssoFramework\Src\assets\WooCommerce', 'addColorFieldsToTaxonomies' ] );
 		add_action( 'woocommerce_after_shop_loop_item_title', [
-			'\ssoFramework\Src\Assets\WooCommerce',
+			'\ssoFramework\Src\assets\WooCommerce',
 			'replaceAddToCartLoop'
 		], 15 );
 		add_action( 'woocommerce_shop_loop_item_title', [
-			'\ssoFramework\Src\Assets\WooCommerce',
+			'\ssoFramework\Src\assets\WooCommerce',
 			'addWrapperToLoopBefore'
 		], 1 );
 		add_action( 'woocommerce_after_shop_loop_item_title', [
-			'\ssoFramework\Src\Assets\WooCommerce',
+			'\ssoFramework\Src\assets\WooCommerce',
 			'addWrapperToLoopAfter'
 		], 11 );
 		add_action( 'woocommerce_before_single_product_summary', [
-			'\ssoFramework\Src\Assets\WooCommerce',
+			'\ssoFramework\Src\assets\WooCommerce',
 			'productImages'
 		], 20 );
 		add_action( 'woocommerce_product_options_related', [
-			'\ssoFramework\Src\Assets\WooCommerce',
+			'\ssoFramework\Src\assets\WooCommerce',
 			'registerRelatedProductFields'
 		] );
 		add_action( 'woocommerce_process_product_meta', [
-			'\ssoFramework\Src\Assets\WooCommerce',
+			'\ssoFramework\Src\assets\WooCommerce',
 			'saveRelatedProductFields'
 		] );
 		add_action( 'woocommerce_after_single_product_summary', [
-			'\ssoFramework\Src\Assets\WooCommerce',
+			'\ssoFramework\Src\assets\WooCommerce',
 			'relatedProductsMount'
 		], 20 );
 		add_action( 'woocommerce_after_single_product_summary', [
-			'\ssoFramework\Src\Assets\WooCommerce',
+			'\ssoFramework\Src\assets\WooCommerce',
 			'accessoriesProductsMount'
 		], 30 );
 		add_action( 'woocommerce_after_single_product_summary', [
-			'\ssoFramework\Src\Assets\WooCommerce',
+			'\ssoFramework\Src\assets\WooCommerce',
 			'variantsProductsMount'
 		], 30 );
 		add_action( 'woocommerce_before_single_product_summary', [
-			'\ssoFramework\Src\Assets\WooCommerce',
+			'\ssoFramework\Src\assets\WooCommerce',
 			'beforeRowWrapper'
 		], 1 );
 		add_action( 'woocommerce_after_single_product_summary', [
-			'\ssoFramework\Src\Assets\WooCommerce',
+			'\ssoFramework\Src\assets\WooCommerce',
 			'afterRowWrapper'
 		], 30 );
 		add_action( 'woocommerce_before_single_product_summary', [
-			'\ssoFramework\Src\Assets\WooCommerce',
+			'\ssoFramework\Src\assets\WooCommerce',
 			'beforeGridWrapper'
 		], 40 );
 		add_action( 'woocommerce_after_single_product_summary', [
-			'\ssoFramework\Src\Assets\WooCommerce',
+			'\ssoFramework\Src\assets\WooCommerce',
 			'afterGridWrapper'
 		], 12 );
 		add_action( 'init', function () {
@@ -1040,36 +1040,36 @@ class WooCommerce {
 				return $columns;
 			}, 100 );
 		} );
-		add_action( 'cmb2_admin_init', [ '\ssoFramework\Src\Assets\WooCommerce', 'productMetaFields' ] );
+		add_action( 'cmb2_admin_init', [ '\ssoFramework\Src\assets\WooCommerce', 'productMetaFields' ] );
 		add_action( 'woocommerce_save_product_variation', [
-			'\ssoFramework\Src\Assets\WooCommerce',
+			'\ssoFramework\Src\assets\WooCommerce',
 			'saveVariantsFields'
 		], 10, 2 );
 		add_action( 'woocommerce_variation_options', [
-			'\ssoFramework\Src\Assets\WooCommerce',
+			'\ssoFramework\Src\assets\WooCommerce',
 			'registerProductVariantsFields'
 		], 10, 3 );
-		add_action( 'after_footer_mount', [ '\ssoFramework\Src\Assets\WooCommerce', 'modalMount' ], 1 );
-		add_action( 'after_service_menu', [ '\ssoFramework\Src\Assets\WooCommerce', 'miniCartMount' ], 1 );
-		add_action( 'products_mount', [ '\ssoFramework\Src\Assets\WooCommerce', 'productsMount' ], 1 );
-		add_action( 'mount_after_content', [ '\ssoFramework\Src\Assets\WooCommerce', 'cartMount' ], 1 );
-		add_action('woocommerce_single_product_summary', ['\ssoFramework\Src\Assets\WooCommerce', 'product_details_react'], 15);
-		add_action('woocommerce_single_product_summary', ['\ssoFramework\Src\Assets\WooCommerce', 'product_summary_react'], 20);
-		add_action('wp_head', ['\ssoFramework\Src\Assets\WooCommerce', 'woocommerceSingleOpen']);
-		add_action('cmb2_admin_init', ['\ssoFramework\Src\Assets\WooCommerce', 'user_specific_pricing_backend']);
-		add_action('cmb2_admin_init', ['\ssoFramework\Src\Assets\WooCommerce', 'user_specific_free_shipping_backend']);
-        add_action('cmb2_admin_init', ['\ssoFramework\Src\Assets\WooCommerce', 'product_packing']);
-        add_action('init', ['\ssoFramework\Src\Assets\WooCommerce', 'rewrite_endpoints']);
+		add_action( 'after_footer_mount', [ '\ssoFramework\Src\assets\WooCommerce', 'modalMount' ], 1 );
+		add_action( 'after_service_menu', [ '\ssoFramework\Src\assets\WooCommerce', 'miniCartMount' ], 1 );
+		add_action( 'products_mount', [ '\ssoFramework\Src\assets\WooCommerce', 'productsMount' ], 1 );
+		add_action( 'mount_after_content', [ '\ssoFramework\Src\assets\WooCommerce', 'cartMount' ], 1 );
+		add_action('woocommerce_single_product_summary', ['\ssoFramework\Src\assets\WooCommerce', 'product_details_react'], 15);
+		add_action('woocommerce_single_product_summary', ['\ssoFramework\Src\assets\WooCommerce', 'product_summary_react'], 20);
+		add_action('wp_head', ['\ssoFramework\Src\assets\WooCommerce', 'woocommerceSingleOpen']);
+		add_action('cmb2_admin_init', ['\ssoFramework\Src\assets\WooCommerce', 'user_specific_pricing_backend']);
+		add_action('cmb2_admin_init', ['\ssoFramework\Src\assets\WooCommerce', 'user_specific_free_shipping_backend']);
+        add_action('cmb2_admin_init', ['\ssoFramework\Src\assets\WooCommerce', 'product_packing']);
+        add_action('init', ['\ssoFramework\Src\assets\WooCommerce', 'rewrite_endpoints']);
         add_action('woocommerce_account_user-defined-prices_endpoint', [
-            '\ssoFramework\Src\Assets\WooCommerce',
+            '\ssoFramework\Src\assets\WooCommerce',
             'user_defined_price_account_content'
         ]);
-        add_action( 'woocommerce_before_main_content', ['\ssoFramework\Src\Assets\WooCommerce', 'addYoastBreacrumbToWC'], 20 );
-		add_action( 'woocommerce_product_options_pricing', [ '\ssoFramework\Src\Assets\WooCommerce', 'createEnvironmentPriceField' ] );
-        add_action( 'woocommerce_process_product_meta', [ '\ssoFramework\Src\Assets\WooCommerce', 'saveEnvironmentPriceField' ] );
-        add_action( 'parse_request', [ '\ssoFramework\Src\Assets\WooCommerce', 'redirect_from_dashboard_to_orders' ], 10, 1  );
-        add_action( 'woocommerce_register_post', [ '\ssoFramework\Src\Assets\WooCommerce', 'validate_extra_register_fields' ], 10, 3 );
-        add_action( 'woocommerce_created_customer', [ '\ssoFramework\Src\Assets\WooCommerce', 'save_extra_register_fields' ] );
-        add_action( 'woocommerce_save_account_details', [ '\ssoFramework\Src\Assets\WooCommerce', 'save_contact_field' ] );
+        add_action( 'woocommerce_before_main_content', ['\ssoFramework\Src\assets\WooCommerce', 'addYoastBreacrumbToWC'], 20 );
+		add_action( 'woocommerce_product_options_pricing', [ '\ssoFramework\Src\assets\WooCommerce', 'createEnvironmentPriceField' ] );
+        add_action( 'woocommerce_process_product_meta', [ '\ssoFramework\Src\assets\WooCommerce', 'saveEnvironmentPriceField' ] );
+        add_action( 'parse_request', [ '\ssoFramework\Src\assets\WooCommerce', 'redirect_from_dashboard_to_orders' ], 10, 1  );
+        add_action( 'woocommerce_register_post', [ '\ssoFramework\Src\assets\WooCommerce', 'validate_extra_register_fields' ], 10, 3 );
+        add_action( 'woocommerce_created_customer', [ '\ssoFramework\Src\assets\WooCommerce', 'save_extra_register_fields' ] );
+        add_action( 'woocommerce_save_account_details', [ '\ssoFramework\Src\assets\WooCommerce', 'save_contact_field' ] );
 	}
 }

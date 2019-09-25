@@ -1,9 +1,9 @@
 <?php
 
-namespace ssoFramework\Src\Api;
+namespace ssoFramework\Src\api;
 
-use ssoFramework\Src\Assets\Fields;
-use ssoFramework\Src\Assets\Helper;
+use ssoFramework\Src\assets\Fields;
+use ssoFramework\Src\assets\Helper;
 
 class WoocommerceApi {
 
@@ -236,15 +236,15 @@ class WoocommerceApi {
 
 	static function loadFilters() {
 		add_filter( "woocommerce_rest_prepare_shop_order_object", [
-			'\ssoFramework\Src\Api\WoocommerceApi',
+			'\ssoFramework\Src\api\WoocommerceApi',
 			'getBillingFieldsRest'
 		], 10, 3 );
 	}
 
 	static function loadActions() {
-		add_action( 'rest_api_init', [ '\ssoFramework\Src\Api\WoocommerceApi', 'addVariantsFieldsToRest' ] );
-		add_action( 'rest_api_init', [ '\ssoFramework\Src\Api\WoocommerceApi', 'registerProductImagesCustom' ] );
-		add_action( 'rest_api_init', [ '\ssoFramework\Src\Api\WoocommerceApi', 'addRelatedProductFieldsToRest' ] );
-		add_action( 'rest_api_init', [ '\ssoFramework\Src\Api\WoocommerceApi', 'shippingCalculation' ] );
+		add_action( 'rest_api_init', [ '\ssoFramework\Src\api\WoocommerceApi', 'addVariantsFieldsToRest' ] );
+		add_action( 'rest_api_init', [ '\ssoFramework\Src\api\WoocommerceApi', 'registerProductImagesCustom' ] );
+		add_action( 'rest_api_init', [ '\ssoFramework\Src\api\WoocommerceApi', 'addRelatedProductFieldsToRest' ] );
+		add_action( 'rest_api_init', [ '\ssoFramework\Src\api\WoocommerceApi', 'shippingCalculation' ] );
 	}
 }
