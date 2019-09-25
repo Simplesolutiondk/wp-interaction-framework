@@ -1,0 +1,14 @@
+{
+    "name": "sso/framework",
+    "description": "Framework for WP Boilerplate 2.0",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Vyacheslav Naumenko",
+            "email": "vna@sso-dev.ru"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
