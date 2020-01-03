@@ -1,0 +1,21 @@
+{
+  "name": "wp-interaction-framework",
+  "version": "1.0.0",
+  "description": "A WP Interaction framework",
+  "main": "index.js",
+  "scripts": {
+    "tag-push": "sh autotagger.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/simple-solution/wp-interaction-framework.git"
+  },
+  "keywords": [
+    "Wordpress",
+    "Interaction",
+    "framework"
+  ],
+  "author": "Simple Solution",
+  "license": "MIT",
+  "homepage": "https://bitbucket.org/simple-solution/wp-interaction-framework#readme"
+}
