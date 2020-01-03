@@ -1,14 +1,5 @@
 {
     "name": "simple-solution/wp-interaction-framework",
     "description": "Framework for WP Boilerplate 2.0",
-    "type": "package",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Vyacheslav Naumenko",
-            "email": "vna@sso-dev.ru"
-        }
-    ],
-    "minimum-stability": "dev",
-    "require": {}
+    "type": "package"
 }
