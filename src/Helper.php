@@ -19,7 +19,7 @@ class Helper {
 
 		$id     = str_replace( ' ', '-', strtolower( $name ) );
 		$widget = register_sidebar( [
-			'name'          => __( $name, 'sso-ea' ),
+			'name'          => __( $name, 'sso-default' ),
 			'id'            => $id,
 			'class'         => $class,
 			'before_widget' => '<div id="%1$s" class="widget %2$s">',
@@ -55,7 +55,7 @@ class Helper {
 			$args->post_type . '_' . $label,
 			$args->post_type,
 			[
-				'label'        => __( $args->label, 'sso-ea' ),
+				'label'        => __( $args->label, 'sso-default' ),
 				'rewrite'      => [ 'slug' => $args->post_type . '_' . $label ],
 				'hierarchical' => true,
 				'show_in_rest' => true

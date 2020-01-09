@@ -8,7 +8,7 @@ abstract class Init {
 
 	// TODO: Implement check for if already initialized.
 	static function load() {
-        self::setup();
+        static::setup();
 	}
 
 	static function setup() {

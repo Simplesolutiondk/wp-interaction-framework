@@ -41,7 +41,7 @@ class Init extends \SimpleSolution\WpInteractionFramework\Init {
 			register_nav_menu( 'main-menu-right', 'Main Menu Right' );
 			register_nav_menu( 'top-menu', 'Top Menu' );
 
-			load_theme_textdomain( 'sso-ea', get_template_directory() . '/languages' );
+			load_theme_textdomain( 'sso-default', get_template_directory() . '/languages' );
 		} );
 	}
 
