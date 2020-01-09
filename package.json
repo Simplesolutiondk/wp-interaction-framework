@@ -1,6 +1,6 @@
 {
   "name": "wp-interaction-framework",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "description": "A WP Interaction framework",
   "main": "index.js",
   "scripts": {
