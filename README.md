@@ -1,4 +1,4 @@
-# WP Theme Framework
+# WP Theme Framework ```v1.0.0```
 
 ## 1. Install
 - Add to `composer.php`:<br>
