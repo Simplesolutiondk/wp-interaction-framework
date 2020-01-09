@@ -1,5 +1,10 @@
 {
     "name": "simple-solution/wp-interaction-framework",
     "description": "Framework for WP Boilerplate 2.0",
-    "type": "package"
+    "type": "package",
+    "autoload": {
+        "psr-4": {
+            "SimpleSolution\\WpInteractionFramework\\": "src/"
+        }
+    }
 }
